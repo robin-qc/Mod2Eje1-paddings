@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de Control de Padding CSS - Interfaz Futurista">
+    <meta name="author" content="Robin">
+    <title>Padding Control System | CSS Framework</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Fuentes del sistema -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Preloader del sistema */
+        #system-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--interface-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader-content {
+            text-align: center;
+            padding: var(--spacing-2xl);
+        }
+        
+        .loader-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            color: var(--system-blue);
+            margin-bottom: var(--spacing-lg);
+            letter-spacing: 1px;
+        }
+        
+        .loader-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xl);
+            font-size: 1rem;
+        }
+        
+        .loading-indicator {
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--system-blue), 
+                transparent);
+            animation: loading 1.5s ease-in-out infinite;
+            margin-top: var(--spacing-xl);
+        }
+        
+        @keyframes loading {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader del sistema -->
+    <div id="system-loader">
+        <div class="loader-content">
+            <div class="loader-title">PADDING CONTROL SYSTEM</div>
+            <div class="loader-subtitle">Inicializando módulos de espaciado CSS...</div>
+            <div class="loading-indicator"></div>
+        </div>
+    </div>
+    
+    <!-- Contenido principal -->
+    <div class="container">
+        <header class="page-header">
+            <h1>Padding Control System</h1>
+            <p class="subtitle">Sistema avanzado de gestión de espaciado interno en CSS - Interfaz de control futurista</p>
+        </header>
+
+        <!-- Sección 1: Padding Uniforme -->
+        <section class="demo-section" id="section-uniform">
+            <h2><span class="section-badge">01</span> Padding Uniforme</h2>
+            <p class="section-description">Configuración de espaciado interno equilibrado en todos los lados del elemento. Sistema de medición precisa.</p>
+            <div class="examples-grid">
+                <div class="box">
+                    <div class="content padding-none">
+                        <p><strong>Sin padding</strong></p>
+                        <p>padding: 0;</p>
+                        <p>Border directo al contenido</p>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <div class="content padding-small">
+                        <p><strong>Espaciado mínimo</strong></p>
+                        <p>padding: 16px;</p>
+                        <p>Protección básica del contenido</p>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <div class="content padding-medium">
+                        <p><strong>Espaciado estándar</strong></p>
+                        <p>padding: 24px;</p>
+                        <p>Balance óptimo de legibilidad</p>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <div class="content padding-large">
+                        <p><strong>Espaciado amplio</strong></p>
+                        <p>padding: 40px;</p>
+                        <p>Máximo confort visual</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Padding Asimétrico -->
+        <section class="demo-section" id="section-asymmetric">
+            <h2><span class="section-badge">02</span> Padding Asimétrico</h2>
+            <p class="section-description">Control granular por eje direccional. Distribución estratégica del espacio interno.</p>
+            <div class="examples-grid">
+                <div class="box">
+                    <div class="content padding-vertical">
+                        <p><strong>Vertical prioritario</strong></p>
+                        <p>padding: 40px 16px;</p>
+                        <p>Énfasis en eje Y</p>
+                        <p>40px vertical | 16px horizontal</p>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <div class="content padding-horizontal">
+                        <p><strong>Horizontal prioritario</strong></p>
+                        <p>padding: 16px 40px;</p>
+                        <p>Énfasis en eje X</p>
+                        <p>16px vertical | 40px horizontal</p>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <div class="content padding-custom">
+                        <p><strong>Configuración personalizada</strong></p>
+                        <p>padding: 16px 24px 32px 40px;</p>
+                        <p>Control direccional completo</p>
+                        <p>Sentido horario: top | right | bottom | left</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: Casos de Uso Prácticos -->
+        <section class="demo-section" id="section-practical">
+            <h2><span class="section-badge">03</span> Casos de Uso del Sistema</h2>
+            <p class="section-description">Implementación práctica en componentes de interfaz real. Patrones de diseño validados.</p>
+            
+            <h3>Botones de Acción</h3>
+            <div class="buttons-demo">
+                <button class="btn btn-small">
+                    <span class="status-indicator"></span>
+                    Acción compacta
+                </button>
+                <button class="btn btn-medium">
+                    <span class="status-indicator"></span>
+                    Acción estándar
+                </button>
+                <button class="btn btn-large">
+                    <span class="status-indicator"></span>
+                    Acción principal
+                </button>
+            </div>
+
+            <h3>Campos de Entrada</h3>
+            <div class="inputs-demo">
+                <input type="text" class="input input-small" placeholder="Entrada compacta">
+                <input type="text" class="input input-medium" placeholder="Entrada estándar">
+                <input type="text" class="input input-large" placeholder="Entrada amplia">
+            </div>
+
+            <h3>Componentes de Tarjeta</h3>
+            <div class="cards-demo">
+                <div class="card card-compact">
+                    <h4>Card Compacta</h4>
+                    <p>padding: 16px;</p>
+                    <p>Densidad informativa alta</p>
+                </div>
+                <div class="card card-comfortable">
+                    <h4>Card Estándar</h4>
+                    <p>padding: 24px;</p>
+                    <p>Balance óptimo visual</p>
+                </div>
+                <div class="card card-spacious">
+                    <h4>Card Premium</h4>
+                    <p>padding: 40px;</p>
+                    <p>Espacio premium de lujo</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Padding con Background -->
+        <section class="demo-section" id="section-background">
+            <h2><span class="section-badge">04</span> Interacción con Backgrounds</h2>
+            <p class="section-description">Comportamiento del sistema de fondos en relación con el padding. Cobertura visual.</p>
+            <div class="info-box">
+                <span class="status-indicator"></span>
+                <strong>Propiedad fundamental:</strong> El background se extiende hasta el borde exterior, incluyendo completamente el área de padding. Esto afecta directamente la percepción visual del tamaño del elemento.
+            </div>
+            
+            <div class="bg-demo">
+                <div class="bg-box bg-no-padding">
+                    <div class="inner-content">
+                        <strong>Sin padding</strong>
+                        <p>Background al borde del contenido</p>
+                        <p>Fondo: 100% cobertura de contenido</p>
+                    </div>
+                </div>
+                <div class="bg-box bg-with-padding">
+                    <div class="inner-content">
+                        <strong>Con padding: 48px</strong>
+                        <p>Background extendido al borde del elemento</p>
+                        <p>Fondo: contenido + área de padding</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 5: Box-Sizing Comparison -->
+        <section class="demo-section" id="section-box-sizing">
+            <h2><span class="section-badge">05</span> Box-Sizing: Modo de Cálculo</h2>
+            <p class="section-description">Comparación de algoritmos de cálculo dimensional. Impacto en el layout final.</p>
+            
+            <div class="comparison-grid">
+                <div class="comparison-box">
+                    <h3>content-box (modo heredado)</h3>
+                    <div class="sized-box content-box-demo">
+                        <p>width declarado: 240px</p>
+                        <p>padding aplicado: 24px</p>
+                        <p class="highlight">Ancho real: 288px</p>
+                        <p class="highlight">Width + padding = total</p>
+                    </div>
+                    <p class="explanation">⚠️ El padding se SUMA al width declarado, causando expansión dimensional no intencionada</p>
+                </div>
+
+                <div class="comparison-box">
+                    <h3>border-box (modo moderno)</h3>
+                    <div class="sized-box border-box-demo">
+                        <p>width declarado: 240px</p>
+                        <p>padding aplicado: 24px</p>
+                        <p class="highlight">Ancho real: 240px</p>
+                        <p class="highlight">Padding incluido en width</p>
+                    </div>
+                    <p class="explanation">✅ El padding se RESTA del width declarado, manteniendo dimensiones predecibles</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 6: Padding con Inline vs Block -->
+        <section class="demo-section" id="section-display">
+            <h2><span class="section-badge">06</span> Display Type & Padding</h2>
+            <p class="section-description">Comportamiento diferencial según el tipo de display. Consideraciones de layout.</p>
+            
+            <h3>Elementos Inline (display: inline)</h3>
+            <p>
+                Este es un <span class="inline-padded">elemento inline con padding</span> dentro del flujo de texto.
+                Observa cómo el padding horizontal funciona normalmente, pero el vertical no afecta la altura de línea,
+                causando superposición con contenido adyacente.
+            </p>
+
+            <h3>Elementos Inline-Block (display: inline-block)</h3>
+            <p>
+                Este es un <span class="inline-block-padded">elemento inline-block con padding</span> dentro del texto.
+                Combina comportamiento inline con capacidades block: el padding funciona correctamente en todos los lados
+                y respeta el flujo de línea.
+            </p>
+
+            <h3>Elementos Block (display: block)</h3>
+            <div class="block-padded">
+                Elemento block con padding. Ocupa todo el ancho disponible del contenedor padre.
+                El padding funciona uniformemente y el elemento fuerza un salto de línea completo.
+            </div>
+        </section>
+
+        <!-- Sección 7: Nueva - Padding Responsive -->
+        <section class="demo-section" id="section-responsive">
+            <h2><span class="section-badge">07</span> Sistema Responsive de Padding</h2>
+            <p class="section-description">Adaptación inteligente del espaciado según viewport. Patrones responsive.</p>
+            
+            <div class="responsive-demo">
+                <div class="responsive-box">
+                    <div class="responsive-content responsive-small">
+                        <strong>Padding compacto</strong>
+                        <p>Ideal para dispositivos móviles</p>
+                        <p>padding: 12px;</p>
+                    </div>
+                </div>
+                
+                <div class="responsive-box">
+                    <div class="responsive-content responsive-medium">
+                        <strong>Padding estándar</strong>
+                        <p>Balance para tablets y escritorio</p>
+                        <p>padding: 20px;</p>
+                    </div>
+                </div>
+                
+                <div class="responsive-box">
+                    <div class="responsive-content responsive-large">
+                        <strong>Padding amplio</strong>
+                        <p>Para pantallas grandes y escritorio</p>
+                        <p>padding: 32px;</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Código de Referencia -->
+        <section class="demo-section code-section" id="section-reference">
+            <h2><span class="section-badge">08</span> Referencia del Sistema</h2>
+            <p class="section-description">Sintaxis completa del sistema de padding CSS. Documentación técnica.</p>
+            <pre><code>/* ===== SISTEMA DE PADDING ===== */
+
+/* Un valor único (simétrico 4 lados) */
+padding: 20px;
+
+/* Dos valores (eje Y | eje X) */
+padding: 10px 20px;      /* vertical | horizontal */
+
+/* Tres valores (top | X | bottom) */
+padding: 10px 20px 30px; /* top | horizontal | bottom */
+
+/* Cuatro valores (sentido horario) */
+padding: 10px 15px 20px 25px; /* top | right | bottom | left */
+
+/* ===== CONTROL POR LADO ===== */
+padding-top: 10px;
+padding-right: 15px;
+padding-bottom: 20px;
+padding-left: 25px;
+
+/* ===== UNIDADES DE MEDICIÓN ===== */
+padding: 16px;           /* Píxeles (fijo) */
+padding: 1rem;           /* Relativo al root font-size */
+padding: 1em;            /* Relativo al font-size del elemento */
+padding: 5%;             /* Relativo al ancho del contenedor padre */
+
+/* ===== VALORES ESPECIALES ===== */
+padding: inherit;        /* Hereda del padre */
+padding: initial;        /* Valor inicial */
+padding: unset;          /* Combina inherit/initial */
+padding: 0;              /* Reset completo */
+
+/* ===== PATRONES COMUNES ===== */
+
+/* Botones estándar */
+.btn {
+    padding: 12px 24px;      /* Proporción 1:2 */
+    box-sizing: border-box;  /* ✅ Siempre usar border-box */
+}
+
+/* Inputs de formulario */
+.input {
+    padding: 12px 16px;      /* Espacio interno cómodo */
+    box-sizing: border-box;
+}
+
+/* Cards y paneles */
+.card {
+    padding: 24px;           /* Espacio estándar */
+    box-sizing: border-box;
+}
+
+/* Elementos inline con padding */
+.inline-element {
+    display: inline-block;   /* ⚠️ Necesario para padding vertical */
+    padding: 8px 16px;
+}
+
+/* ===== BOX-SIZING (CRÍTICO) ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;  /* ✅ Mejor práctica global */
+}
+
+/* ===== RESPONSIVE PADDING ===== */
+.elemento {
+    padding: 16px;           /* Mobile first */
+}
+
+@media (min-width: 768px) {
+    .elemento {
+        padding: 24px;       /* Tablet */
+    }
+}
+
+@media (min-width: 1024px) {
+    .elemento {
+        padding: 32px;       /* Escritorio */
+    }
+}
+
+/* ===== UTILIDADES ===== */
+.p-0 { padding: 0; }
+.p-1 { padding: 4px; }
+.p-2 { padding: 8px; }
+.p-3 { padding: 12px; }
+.p-4 { padding: 16px; }
+.p-5 { padding: 20px; }
+.p-6 { padding: 24px; }
+
+/* Padding por eje */
+.py-1 { padding-top: 4px; padding-bottom: 4px; }
+.px-2 { padding-left: 8px; padding-right: 8px; }
+
+/* ===== MEJORES PRÁCTICAS ===== */
+
+1. Siempre usar box-sizing: border-box
+2. Preferir unidades relativas (rem/em) para escalabilidad
+3. Implementar estrategia mobile-first
+4. Usar utilidades CSS para consistencia
+5. Considerar accesibilidad (espaciado mínimo 44px para toque)
+6. Mantener proporciones consistentes (1:2 para botones)</code></pre>
+        </section>
+
+        <footer class="page-footer">
+            <p>&copy; 2024 - Padding Control System v2.0 | CSS Framework Professional</p>
+            <p style="margin-top: var(--spacing-sm); font-size: 0.9rem; opacity: 0.7;">System Status: <span style="color: var(--system-green);">●</span> Operational</p>
+        </footer>
+    </div>
+
+    <!-- Scripts del sistema -->
+    <script>
+        // Inicialización del sistema
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const loader = document.getElementById('system-loader');
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    
+                    // Inicializar efectos interactivos
+                    initSystemEffects();
+                }, 500);
+            }, 1500);
+        });
+
+        // Efectos del sistema
+        function initSystemEffects() {
+            // Efecto de hover en elementos interactivos
+            const interactiveElements = document.querySelectorAll('.btn, .card, .box');
+            
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    setTimeout(() => {
+                        this.style.zIndex = '';
+                    }, 300);
+                });
+            });
+
+            // Efecto de clic con partículas
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    createClickEffect(e, this);
+                });
+            });
+
+            // Sistema de medición visual
+            const boxes = document.querySelectorAll('.box');
+            boxes.forEach(box => {
+                box.addEventListener('mouseenter', function() {
+                    showPaddingMeasurement(this);
+                });
+            });
+        }
+
+        // Efecto de partículas al hacer clic
+        function createClickEffect(event, element) {
+            const rect = element.getBoundingClientRect();
+            const colors = ['#0066ff', '#00cc88', '#9966ff', '#ff6600'];
+            
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                const size = Math.random() * 8 + 4;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                particle.style.cssText = `
+                    position: fixed;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${color};
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1000;
+                    top: ${event.clientY}px;
+                    left: ${event.clientX}px;
+                    transform: translate(-50%, -50%);
+                    animation: particleExplode 0.6s ease-out forwards;
+                `;
+                
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 600);
+            }
+
+            // Añadir estilos de animación si no existen
+            if (!document.getElementById('particle-styles')) {
+                const style = document.createElement('style');
+                style.id = 'particle-styles';
+                style.textContent = `
+                    @keyframes particleExplode {
+                        0% {
+                            transform: translate(-50%, -50%) scale(0);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: translate(
+                                ${Math.random() * 200 - 100}px,
+                                ${Math.random() * 200 - 100}px
+                            ) scale(1);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        // Mostrar medición de padding
+        function showPaddingMeasurement(element) {
+            const content = element.querySelector('.content');
+            if (!content) return;
+            
+            const computedStyle = window.getComputedStyle(content);
+            const paddingTop = computedStyle.paddingTop;
+            const paddingRight = computedStyle.paddingRight;
+            const paddingBottom = computedStyle.paddingBottom;
+            const paddingLeft = computedStyle.paddingLeft;
+            
+            // Aquí podrías implementar una visualización de las medidas
+            // Por ejemplo, mostrar tooltips con los valores
+            console.log(`Padding: ${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`);
+        }
+
+        // Sistema de teclas rápidas (opcional)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                alert('Sistema de Padding - Tecla rápida activada');
+            }
+        });
+    </script>
+</body>
+</html>

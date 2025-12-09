@@ -1,0 +1,1323 @@
+/* =====================================
+   PADDING CONTROL SYSTEM - INTERFAZ FUTURISTA
+   ===================================== */
+
+:root {
+    /* ===== PALETA DE COLORES SISTEMA ===== */
+    --system-blue: #0066ff;
+    --system-blue-glow: rgba(0, 102, 255, 0.4);
+    --system-blue-dark: #0052cc;
+    
+    --system-green: #00cc88;
+    --system-green-glow: rgba(0, 204, 136, 0.4);
+    
+    --system-purple: #9966ff;
+    --system-purple-glow: rgba(153, 102, 255, 0.4);
+    
+    --system-orange: #ff6600;
+    --system-orange-glow: rgba(255, 102, 0, 0.4);
+    
+    --system-red: #ff3366;
+    --system-red-glow: rgba(255, 51, 102, 0.4);
+    
+    --system-yellow: #ffcc00;
+    --system-yellow-glow: rgba(255, 204, 0, 0.4);
+    
+    /* ===== TONOS DE INTERFAZ ===== */
+    --interface-dark: #0d1520;
+    --interface-darker: #080e15;
+    --interface-panel: #141f2f;
+    --interface-surface: #1e2c40;
+    --interface-highlight: #2a3b57;
+    
+    /* ===== TEXTO Y CONTRASTES ===== */
+    --text-primary: #ffffff;
+    --text-secondary: #b3c5d7;
+    --text-muted: #8a9db3;
+    --text-code: #66ffcc;
+    
+    /* ===== GRADIENTES SISTEMA ===== */
+    --gradient-system: linear-gradient(135deg, 
+        var(--system-blue) 0%, 
+        var(--system-purple) 50%, 
+        var(--system-green) 100%);
+    
+    --gradient-panel: linear-gradient(160deg, 
+        var(--interface-panel) 0%, 
+        var(--interface-surface) 100%);
+    
+    --gradient-surface: linear-gradient(145deg, 
+        rgba(30, 44, 64, 0.95) 0%, 
+        rgba(20, 31, 47, 0.98) 100%);
+    
+    /* ===== EFECTOS DE ILUMINACIÓN ===== */
+    --glow-blue: 0 0 20px var(--system-blue-glow);
+    --glow-green: 0 0 20px var(--system-green-glow);
+    --glow-purple: 0 0 20px var(--system-purple-glow);
+    --glow-system: 
+        0 0 15px var(--system-blue-glow),
+        0 0 30px var(--system-purple-glow);
+    
+    /* ===== SOMBRAS Y PROFUNDIDAD ===== */
+    --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.6);
+    --shadow-panel: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --shadow-surface: 0 8px 30px rgba(0, 0, 0, 0.4);
+    --shadow-elevated: 0 15px 50px rgba(0, 0, 0, 0.7);
+    
+    /* ===== ESPACIADO SISTEMÁTICO ===== */
+    --spacing-unit: 8px;
+    --spacing-xxs: calc(var(--spacing-unit) * 0.25); /* 2px */
+    --spacing-xs: calc(var(--spacing-unit) * 0.5);   /* 4px */
+    --spacing-sm: calc(var(--spacing-unit) * 1);     /* 8px */
+    --spacing-md: calc(var(--spacing-unit) * 1.5);   /* 12px */
+    --spacing-lg: calc(var(--spacing-unit) * 2);     /* 16px */
+    --spacing-xl: calc(var(--spacing-unit) * 3);     /* 24px */
+    --spacing-2xl: calc(var(--spacing-unit) * 4);    /* 32px */
+    --spacing-3xl: calc(var(--spacing-unit) * 6);    /* 48px */
+    
+    /* ===== TIPOGRAFÍA SISTEMA ===== */
+    --font-system: 'Inter', 'Segoe UI', -apple-system, system-ui, sans-serif;
+    --font-mono: 'Roboto Mono', 'SF Mono', 'Cascadia Code', monospace;
+    --font-heading: 'Space Grotesk', 'Segoe UI', sans-serif;
+    
+    /* ===== BORDER RADIUS ===== */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
+    --radius-3xl: 32px;
+    
+    /* ===== TRANSICIONES SISTEMA ===== */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-fast: all 0.15s ease-out;
+    
+    /* ===== EFECTOS VISUALES ===== */
+    --blur-glass: blur(10px);
+    --blur-heavy: blur(20px);
+}
+
+/* =====================================
+   RESET Y ESTILOS BASE - SISTEMA
+   ===================================== */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-system);
+    background: var(--interface-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(0, 102, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(153, 102, 255, 0.05) 0%, transparent 50%);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+/* Fondo de grid tecnológico */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 102, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 102, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+    z-index: -2;
+    opacity: 0.3;
+}
+
+/* Brillo sutil en el centro */
+body::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, 
+        rgba(0, 102, 255, 0.1) 0%, 
+        rgba(153, 102, 255, 0.05) 30%, 
+        transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* =====================================
+   CONTENEDOR PRINCIPAL
+   ===================================== */
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    position: relative;
+    z-index: 1;
+}
+
+/* =====================================
+   ENCABEZADO DEL SISTEMA
+   ===================================== */
+
+.page-header {
+    text-align: center;
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl);
+    position: relative;
+    margin-bottom: var(--spacing-xl);
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 4px;
+    background: var(--gradient-system);
+    border-radius: 2px;
+    filter: drop-shadow(var(--glow-system));
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, 
+        var(--text-primary) 0%, 
+        var(--system-blue) 50%, 
+        var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: 'PADDING';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: linear-gradient(135deg, 
+        var(--interface-dark) 0%, 
+        transparent 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    z-index: -1;
+    filter: blur(2px);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    background: rgba(20, 31, 47, 0.6);
+    backdrop-filter: var(--blur-glass);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 102, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.subtitle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 102, 255, 0.1), 
+        transparent);
+    animation: scanline 4s linear infinite;
+}
+
+@keyframes scanline {
+    100% { left: 100%; }
+}
+
+/* =====================================
+   SECCIONES DEL SISTEMA
+   ===================================== */
+
+.demo-section {
+    background: var(--gradient-surface);
+    backdrop-filter: var(--blur-glass);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+    border: 1px solid rgba(0, 102, 255, 0.15);
+    box-shadow: var(--shadow-panel);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.demo-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-system);
+    opacity: 0.5;
+}
+
+.demo-section:hover {
+    border-color: rgba(0, 102, 255, 0.3);
+    box-shadow: 
+        var(--shadow-panel),
+        0 0 40px rgba(0, 102, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.demo-section h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-weight: 700;
+}
+
+.section-badge {
+    background: var(--gradient-system);
+    color: var(--interface-dark);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    min-width: 36px;
+    text-align: center;
+    box-shadow: var(--glow-system);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    animation: badgeShimmer 3s infinite;
+}
+
+@keyframes badgeShimmer {
+    0%, 100% { left: -100%; }
+    50% { left: 100%; }
+}
+
+.section-description {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: var(--spacing-xl);
+    max-width: 800px;
+}
+
+/* =====================================
+   SECCIÓN 1: PADDING UNIFORME - SISTEMA DE VISUALIZACIÓN
+   ===================================== */
+
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.box {
+    background: var(--gradient-panel);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    position: relative;
+    transition: var(--transition-bounce);
+    border: 1px solid rgba(0, 102, 255, 0.1);
+    animation: boxAppear 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.box:nth-child(1) { animation-delay: 0.1s; }
+.box:nth-child(2) { animation-delay: 0.2s; }
+.box:nth-child(3) { animation-delay: 0.3s; }
+.box:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes boxAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.box:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+        var(--shadow-surface),
+        0 0 30px rgba(0, 102, 255, 0.2);
+    border-color: rgba(0, 102, 255, 0.3);
+}
+
+.content {
+    background: var(--interface-surface);
+    border-radius: calc(var(--radius-xl) - 2px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.box:hover .content {
+    background: var(--interface-highlight);
+}
+
+/* Indicador visual del padding */
+.content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.box:hover .content::before {
+    opacity: 1;
+    border-color: var(--system-blue);
+    animation: borderPulse 2s infinite;
+}
+
+@keyframes borderPulse {
+    0%, 100% { 
+        border-color: var(--system-blue);
+        box-shadow: 0 0 10px var(--system-blue-glow);
+    }
+    50% { 
+        border-color: var(--system-purple);
+        box-shadow: 0 0 20px var(--system-purple-glow);
+    }
+}
+
+.content p {
+    margin: var(--spacing-sm) 0;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 1;
+}
+
+.content p:first-child {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.content p:not(:first-child) {
+    font-family: var(--font-mono);
+    color: var(--text-code);
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Variaciones de padding uniforme */
+.padding-none {
+    padding: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 51, 102, 0.1), 
+        rgba(255, 51, 102, 0.2));
+    border-left: 4px solid var(--system-red);
+}
+
+.padding-none .content p:first-child {
+    color: var(--system-red);
+}
+
+.padding-small {
+    padding: 16px;
+    background: linear-gradient(135deg, 
+        rgba(0, 102, 255, 0.1), 
+        rgba(0, 102, 255, 0.2));
+    border-left: 4px solid var(--system-blue);
+}
+
+.padding-medium {
+    padding: 24px;
+    background: linear-gradient(135deg, 
+        rgba(0, 204, 136, 0.1), 
+        rgba(0, 204, 136, 0.2));
+    border-left: 4px solid var(--system-green);
+}
+
+.padding-large {
+    padding: 40px;
+    background: linear-gradient(135deg, 
+        rgba(153, 102, 255, 0.1), 
+        rgba(153, 102, 255, 0.2));
+    border-left: 4px solid var(--system-purple);
+}
+
+/* =====================================
+   SECCIÓN 2: PADDING ASIMÉTRICO - PANEL DE CONTROL
+   ===================================== */
+
+.padding-vertical {
+    padding: 40px 16px;
+    background: linear-gradient(135deg, 
+        rgba(255, 102, 0, 0.1), 
+        rgba(255, 102, 0, 0.2));
+    border-left: 4px solid var(--system-orange);
+}
+
+.padding-vertical .content p:first-child {
+    color: var(--system-orange);
+}
+
+.padding-horizontal {
+    padding: 16px 40px;
+    background: linear-gradient(135deg, 
+        rgba(255, 204, 0, 0.1), 
+        rgba(255, 204, 0, 0.2));
+    border-left: 4px solid var(--system-yellow);
+}
+
+.padding-horizontal .content p:first-child {
+    color: var(--system-yellow);
+}
+
+.padding-custom {
+    padding: 16px 24px 32px 40px;
+    background: linear-gradient(135deg, 
+        rgba(0, 102, 255, 0.1), 
+        rgba(153, 102, 255, 0.1));
+    border-left: 4px solid var(--gradient-system);
+}
+
+.padding-custom .content p:first-child {
+    background: var(--gradient-system);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* =====================================
+   SECCIÓN 3: CASOS PRÁCTICOS - INTERFAZ REAL
+   ===================================== */
+
+.demo-section h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin: var(--spacing-2xl) 0 var(--spacing-xl);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid rgba(0, 102, 255, 0.3);
+    position: relative;
+}
+
+.demo-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--gradient-system);
+}
+
+.buttons-demo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.btn {
+    background: var(--interface-surface);
+    color: var(--text-primary);
+    border: 2px solid rgba(0, 102, 255, 0.3);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-system);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-bounce);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 102, 255, 0.1), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    background: var(--interface-highlight);
+    border-color: var(--system-blue);
+    transform: translateY(-4px);
+    box-shadow: 
+        0 8px 25px rgba(0, 102, 255, 0.3),
+        var(--glow-blue);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    transition: var(--transition-fast);
+}
+
+.btn-small {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+}
+
+.btn-medium {
+    padding: 16px 32px;
+    font-size: 1rem;
+}
+
+.btn-large {
+    padding: 20px 40px;
+    font-size: 1.1rem;
+}
+
+/* Inputs */
+.inputs-demo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.input {
+    background: var(--interface-surface);
+    border: 2px solid rgba(0, 102, 255, 0.2);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    font-family: var(--font-system);
+    transition: var(--transition-smooth);
+    font-size: 1rem;
+}
+
+.input::placeholder {
+    color: var(--text-muted);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--system-blue);
+    background: var(--interface-highlight);
+    box-shadow: 
+        0 0 0 4px rgba(0, 102, 255, 0.1),
+        var(--glow-blue);
+}
+
+.input-small {
+    padding: 12px 16px;
+}
+
+.input-medium {
+    padding: 16px 20px;
+}
+
+.input-large {
+    padding: 20px 24px;
+    font-size: 1.05rem;
+}
+
+/* Cards */
+.cards-demo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.card {
+    background: var(--gradient-panel);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(0, 102, 255, 0.1);
+    transition: var(--transition-bounce);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-system);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+        var(--shadow-surface),
+        0 0 30px rgba(0, 102, 255, 0.2);
+    border-color: rgba(0, 102, 255, 0.3);
+}
+
+.card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+}
+
+.card-compact {
+    padding: 16px;
+}
+
+.card-comfortable {
+    padding: 24px;
+}
+
+.card-spacious {
+    padding: 40px;
+}
+
+/* =====================================
+   SECCIÓN 4: PADDING Y BACKGROUNDS - LABORATORIO VISUAL
+   ===================================== */
+
+.info-box {
+    background: linear-gradient(135deg, 
+        rgba(0, 102, 255, 0.1), 
+        rgba(153, 102, 255, 0.1));
+    border-left: 4px solid var(--system-blue);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.info-box::before {
+    content: '💡';
+    position: absolute;
+    top: var(--spacing-xl);
+    right: var(--spacing-xl);
+    font-size: 1.5rem;
+    opacity: 0.2;
+}
+
+.info-box strong {
+    color: var(--system-blue);
+}
+
+.bg-demo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-xl);
+}
+
+.bg-box {
+    background: linear-gradient(135deg, 
+        var(--system-blue) 0%, 
+        var(--system-purple) 100%);
+    border-radius: var(--radius-2xl);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-bounce);
+    box-shadow: 
+        var(--shadow-deep),
+        0 0 40px rgba(0, 102, 255, 0.3);
+}
+
+.bg-box:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 
+        var(--shadow-elevated),
+        0 0 60px rgba(0, 102, 255, 0.4);
+}
+
+.bg-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    animation: backgroundShimmer 4s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes backgroundShimmer {
+    0% { transform: translateX(-30%) translateY(-30%) rotate(0deg); }
+    100% { transform: translateX(30%) translateY(30%) rotate(360deg); }
+}
+
+.bg-no-padding {
+    padding: 0;
+}
+
+.bg-with-padding {
+    padding: 48px;
+}
+
+.inner-content {
+    background: var(--interface-dark);
+    color: var(--text-primary);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================================
+   SECCIÓN 5: BOX-SIZING - COMPARADOR TÉCNICO
+   ===================================== */
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-xl);
+}
+
+.comparison-box {
+    background: var(--gradient-surface);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    border: 1px solid rgba(0, 102, 255, 0.15);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.comparison-box:hover {
+    border-color: rgba(0, 102, 255, 0.3);
+    box-shadow: 
+        var(--shadow-surface),
+        0 0 30px rgba(0, 102, 255, 0.1);
+}
+
+.comparison-box h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+    position: relative;
+    padding-bottom: var(--spacing-md);
+}
+
+.comparison-box h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: var(--gradient-system);
+    border-radius: 2px;
+}
+
+.content-box-demo h3::after {
+    background: var(--system-red);
+}
+
+.border-box-demo h3::after {
+    background: var(--system-green);
+}
+
+.sized-box {
+    width: 240px;
+    margin: 0 auto var(--spacing-xl);
+    background: var(--interface-surface);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: var(--transition-bounce);
+    border: 2px solid rgba(0, 102, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.comparison-box:hover .sized-box {
+    transform: scale(1.05);
+    border-color: var(--system-blue);
+}
+
+.sized-box p {
+    color: var(--text-secondary);
+    margin: var(--spacing-md) 0;
+    font-size: 0.95rem;
+    font-family: var(--font-mono);
+}
+
+.highlight {
+    background: var(--gradient-system);
+    color: var(--interface-dark);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-top: var(--spacing-lg);
+    box-shadow: var(--glow-system);
+}
+
+.content-box-demo {
+    box-sizing: content-box;
+    padding: 24px;
+    border-left: 4px solid var(--system-red);
+}
+
+.border-box-demo {
+    box-sizing: border-box;
+    padding: 24px;
+    border-left: 4px solid var(--system-green);
+}
+
+.explanation {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    text-align: center;
+    font-style: italic;
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: rgba(0, 102, 255, 0.05);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 102, 255, 0.1);
+}
+
+/* =====================================
+   SECCIÓN 6: DISPLAY TYPES - MODOS DE VISUALIZACIÓN
+   ===================================== */
+
+.inline-padded {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, 
+        rgba(0, 102, 255, 0.1), 
+        rgba(0, 102, 255, 0.2));
+    color: var(--system-blue);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--system-blue);
+    font-weight: 600;
+    margin: 0 var(--spacing-xs);
+}
+
+.inline-block-padded {
+    display: inline-block;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, 
+        rgba(0, 204, 136, 0.1), 
+        rgba(0, 204, 136, 0.2));
+    color: var(--system-green);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--system-green);
+    font-weight: 600;
+    margin: 0 var(--spacing-sm);
+    transition: var(--transition-smooth);
+}
+
+.inline-block-padded:hover {
+    background: linear-gradient(135deg, 
+        rgba(0, 204, 136, 0.2), 
+        rgba(0, 204, 136, 0.3));
+    transform: translateY(-2px);
+    box-shadow: var(--glow-green);
+}
+
+.block-padded {
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, 
+        rgba(153, 102, 255, 0.1), 
+        rgba(153, 102, 255, 0.2));
+    color: var(--system-purple);
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--system-purple);
+    margin: var(--spacing-lg) 0;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.block-padded:hover {
+    background: linear-gradient(135deg, 
+        rgba(153, 102, 255, 0.2), 
+        rgba(153, 102, 255, 0.3));
+    transform: translateY(-4px);
+    box-shadow: var(--glow-purple);
+}
+
+/* =====================================
+   SECCIÓN 7: REFERENCIA - CONSOLA DE CÓDIGO
+   ===================================== */
+
+.code-section {
+    background: linear-gradient(135deg, 
+        rgba(13, 21, 32, 0.95), 
+        rgba(8, 14, 21, 0.98));
+    border: 1px solid rgba(0, 102, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.code-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-system);
+}
+
+.code-section h2 {
+    color: var(--text-primary);
+}
+
+pre {
+    background: var(--interface-darker);
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-xl);
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    line-height: 1.8;
+    border: 1px solid rgba(0, 102, 255, 0.2);
+    box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.5),
+        0 8px 32px rgba(0, 0, 0, 0.4);
+    position: relative;
+    margin-top: var(--spacing-xl);
+}
+
+pre::before {
+    content: 'CSS PADDING REFERENCE';
+    position: absolute;
+    top: -12px;
+    left: var(--spacing-xl);
+    background: var(--gradient-system);
+    color: var(--interface-dark);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+code {
+    color: var(--system-green);
+    font-size: 0.95rem;
+    font-family: var(--font-mono);
+}
+
+/* =====================================
+   NUEVA SECCIÓN 8: PADDING RESPONSIVE - SISTEMA ADAPTATIVO
+   ===================================== */
+
+.responsive-demo {
+    margin-top: var(--spacing-xl);
+}
+
+.responsive-box {
+    background: var(--gradient-surface);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    border: 1px solid rgba(0, 102, 255, 0.15);
+    transition: var(--transition-smooth);
+}
+
+.responsive-box:hover {
+    border-color: rgba(0, 102, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.responsive-content {
+    background: var(--interface-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.responsive-small {
+    padding: var(--spacing-sm);
+}
+
+.responsive-medium {
+    padding: var(--spacing-lg);
+}
+
+.responsive-large {
+    padding: var(--spacing-xl);
+}
+
+/* =====================================
+   PIE DE PÁGINA - BARRA DE ESTADO
+   ===================================== */
+
+.page-footer {
+    text-align: center;
+    padding: var(--spacing-2xl) 0;
+    color: var(--text-muted);
+    margin-top: var(--spacing-3xl);
+    border-top: 1px solid rgba(0, 102, 255, 0.1);
+    position: relative;
+}
+
+.page-footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: var(--gradient-system);
+}
+
+/* =====================================
+   RESPONSIVE DESIGN - SISTEMA ADAPTATIVO
+   ===================================== */
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 var(--spacing-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .demo-section {
+        padding: var(--spacing-xl) var(--spacing-lg);
+        margin-bottom: var(--spacing-xl);
+    }
+    
+    .demo-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .examples-grid,
+    .cards-demo,
+    .buttons-demo,
+    .inputs-demo,
+    .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .sized-box {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    pre {
+        padding: var(--spacing-lg) var(--spacing-md);
+        font-size: 0.85rem;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .page-header {
+        padding: var(--spacing-2xl) 0 var(--spacing-xl);
+    }
+    
+    .demo-section {
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-lg);
+    }
+    
+    .demo-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .section-badge {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.8rem;
+    }
+    
+    .bg-box {
+        padding: var(--spacing-lg);
+    }
+    
+    .inner-content {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* =====================================
+   UTILIDADES Y EFECTOS ESPECIALES
+   ===================================== */
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--interface-panel);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-system);
+    border-radius: var(--radius-full);
+    border: 3px solid var(--interface-panel);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--system-blue);
+}
+
+/* Selección de texto */
+::selection {
+    background: rgba(0, 102, 255, 0.3);
+    color: var(--text-primary);
+}
+
+/* Focus visible para accesibilidad */
+:focus-visible {
+    outline: 2px solid var(--system-blue);
+    outline-offset: 2px;
+}
+
+/* Clases de utilidad */
+.text-gradient {
+    background: var(--gradient-system);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.glass-effect {
+    background: rgba(20, 31, 47, 0.6);
+    backdrop-filter: var(--blur-glass);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Animación de carga */
+.loading-indicator {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--system-blue), 
+        transparent);
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+/* Indicador de estado */
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--system-green);
+    margin-right: var(--spacing-xs);
+    box-shadow: 0 0 8px var(--system-green-glow);
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
